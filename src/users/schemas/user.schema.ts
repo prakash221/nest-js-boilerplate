@@ -12,6 +12,12 @@ export class User {
   email: string;
 
   @Prop()
+  name: string;
+
+  @Prop()
+  address: string;
+
+  @Prop()
   age: number;
 
   @Prop([String])
