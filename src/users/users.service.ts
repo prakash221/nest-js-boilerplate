@@ -4,6 +4,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 
 import { User } from './schemas/user.schema';
 import { UsersRepository } from './users.repository';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -17,19 +18,10 @@ export class UsersService {
     return this.usersRepository.find({});
   }
 
-  async createUser(
-    email: string,
-    address: string,
-    name: string,
-    age: number,
-  ): Promise<User> {
+  async createUser(createUserDto: CreateUserDto): Promise<User> {
     return this.usersRepository.create({
       userId: uuidv4(),
-      email,
-      name,
-      address,
-      age,
-      favoriteFoods: [],
+      ...createUserDto,
     });
   }
 

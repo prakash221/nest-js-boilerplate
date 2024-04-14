@@ -17,8 +17,9 @@ export class UsersRepository {
   }
 
   async create(user: User): Promise<User> {
-    const newUser = new this.userModel(user);
-    return newUser.save();
+    const newUser = new this.userModel(createUserDto);
+    await newUser.setPassword(createUserDto.password); // Set hashed password
+    return await newUser.save();
   }
 
   async findOneAndUpdate(
